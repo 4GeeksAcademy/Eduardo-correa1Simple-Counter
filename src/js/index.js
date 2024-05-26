@@ -1,26 +1,58 @@
-//import react into the bundle
-import React from "react";
+// Import react into the bundle
+import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 
-
-// include your styles into the webpack bundle
+// Include your styles into the webpack bundle
 import "../styles/index.css";
 
-//import your own components
+// Import your own components
 import Home from "./component/home.jsx";
-import { func } from "prop-types";
+import PropTypes from "prop-types";
 
-function SimpleCounter(){
-    return(<div className="bigCounter">
-        <div className="reloj"><i className="far fa-clock"></i>{}</div>
-        <div className="num1">0</div>
-        <div className="num2">0</div>
-        <div className="num3">0</div>
-        <div className="num4">0</div>
-        <div className="num5">0</div>
-        <div className="num6">0</div>
-    </div>)
+// SimpleCounter component
+function SimpleCounter(props) {
+    return (
+        <div className="bigCounter">
+            <div className="reloj"><i className="far fa-clock"></i>{}</div>
+            <div className="num1">{props.numero1}</div>
+            <div className="num2">{props.numero2}</div>
+            <div className="num3">{props.numero3}</div>
+            <div className="num4">{props.numero4}</div>
+            <div className="num5">{props.numero5}</div>
+            <div className="num6">{props.numero6}</div>
+        </div>
+    );
 }
 
-//render your react application
-ReactDOM.render(<SimpleCounter />, document.querySelector("#app"));
+SimpleCounter.propTypes = {
+    numero1: PropTypes.number,
+    numero2: PropTypes.number,
+    numero3: PropTypes.number,
+    numero4: PropTypes.number,
+    numero5: PropTypes.number,
+    numero6: PropTypes.number,
+};
+
+let counter = 0;
+setInterval(function () {
+    const num1 = Math.floor(counter / 100000) % 10;
+    const num2 = Math.floor(counter / 10000) % 10;
+    const num3 = Math.floor(counter / 1000) % 10;
+    const num4 = Math.floor(counter / 100) % 10;
+    const num5 = Math.floor(counter / 10) % 10;
+    const num6 = Math.floor(counter / 1) % 10;
+    counter++;
+
+    // Render your react application
+    ReactDOM.render(
+        <SimpleCounter 
+            numero6={num6} 
+            numero5={num5} 
+            numero4={num4} 
+            numero3={num3} 
+            numero2={num2} 
+            numero1={num1} 
+        />,
+        document.querySelector("#app")
+    );
+}, 1000);
