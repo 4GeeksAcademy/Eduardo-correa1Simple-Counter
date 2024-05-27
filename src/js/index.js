@@ -1,15 +1,15 @@
-// Import react into the bundle
-import React, { useState, useEffect } from "react";
+
+import React from "react";
 import ReactDOM from "react-dom";
 
-// Include your styles into the webpack bundle
+
 import "../styles/index.css";
 
-// Import your own components
+
 import Home from "./component/home.jsx";
 import PropTypes from "prop-types";
 
-// SimpleCounter component
+
 function SimpleCounter(props) {
     return (
         <div className="bigCounter">
@@ -43,7 +43,7 @@ setInterval(function () {
     const num6 = Math.floor(counter / 1) % 10;
     counter++;
 
-    // Render your react application
+
     ReactDOM.render(
         <SimpleCounter 
             numero6={num6} 
